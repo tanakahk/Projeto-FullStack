@@ -1,16 +1,23 @@
-// import axios from 'axios';
 import { reactive, readonly } from 'vue';
+// import axios from 'axios';
+
+export interface Sr {
+  id: number
+  url: string
+}
 
 export interface FrameState {
   busy: boolean
-  srUrl: string[]
+  // srUrl: string[]
+  sr: Sr[]
   srCurrent: number
   defaultSrUrl: string
 }
 
 const state: FrameState = reactive({
   busy: false,
-  srUrl: [],
+  // srUrl: [],
+  sr: [],
   srCurrent: 0,
   defaultSrUrl: 'https://github.com/Nayuta-Kani/SAOIF-Skill-Records-Database/blob/master/srimages/sr_icon_l_6100',
 });
@@ -26,14 +33,15 @@ const mutations = {
     return true;
   },
 
-  setSrUrl(res: string) {
-    state.srUrl.push(res);
+  setSr(sr: Sr) {
+    const idx = state.sr.findIndex((s) => s.id === sr.id);
+    if (idx > -1) {
+      state.sr[idx] = sr;
+    } else {
+      state.sr.push(sr);
+    }
     return true;
   },
-
-  // setSrId(id: string) {
-
-  // }
 };
 
 const actions = {
@@ -59,22 +67,22 @@ const actions = {
       }
 
       res = res.concat(`${state.defaultSrUrl}`, srId, '.png?raw=true');
-      mutations.setSrUrl(res);
+
+      const idString = res.slice(91, 98);
+      const idNumber = parseInt(idString, 10);
+
+      const sr: Sr = {
+        id: idNumber,
+        url: res,
+      };
+
+      mutations.setSr(sr);
       state.srCurrent++;
     }
 
     if (firstTime) {
-      state.srUrl.shift();
+      state.sr.shift();
     }
-
-    // ------------- Para a gente testar os valores ------------- //
-
-    // for (let i = 0; i < state.srUrl.length; i++) {
-    //   console.log('srUrl', i, state.srUrl[i]);
-    // }
-    // for (let i = 0; i < state.srCurrent; i++) {
-    //   console.log('state.srCurrent', state.srCurrent);
-    // }
 
     mutations.setBusy(false);
     return true;

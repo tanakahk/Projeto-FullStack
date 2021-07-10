@@ -2,7 +2,7 @@
   <div class="div">
     <img class="main-frame" src="@/assets/mainFrameHybridYStar.png" />
 
-    <img class="skill-image" :src="url" />
+    <img class="skill-image" :src="url[0]" />
 
     <img class="sr-bakground" src="@/assets/srBackground.png" />
   </div>
@@ -13,7 +13,7 @@ import { defineComponent } from 'vue';
 
 export default defineComponent({
   props: {
-    url: { type: String },
+    url: { type: Array },
   },
   setup() {
     return {};
