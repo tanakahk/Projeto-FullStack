@@ -1,9 +1,8 @@
 <template>
   <h2>Hi {{ auth.state.username }}</h2>
+
   <div>
-
-    <frame/>
-
+    <frame />
   </div>
 </template>
 

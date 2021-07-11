@@ -4,6 +4,12 @@ import { reactive, readonly } from 'vue';
 export interface Sr {
   id: number
   url: string
+  atk: number
+  hp: number
+  def: number
+  cost: number
+  sp: number
+  cooldown: number
 }
 
 export interface FrameState {
@@ -68,12 +74,17 @@ const actions = {
 
       res = res.concat(`${state.defaultSrUrl}`, srId, '.png?raw=true');
 
-      const idString = res.slice(91, 98);
-      const idNumber = parseInt(idString, 10);
+      const idNumber = parseInt(res.slice(91, 98), 10);
 
       const sr: Sr = {
         id: idNumber,
         url: res,
+        atk: actions.generateRandomNumber(20, 70),
+        hp: actions.generateRandomNumber(50, 3500),
+        def: actions.generateRandomNumber(30, 80),
+        cost: actions.generateRandomNumber(5, 45),
+        sp: actions.generateRandomNumber(10, 50),
+        cooldown: actions.generateRandomNumber(4, 30),
       };
 
       mutations.setSr(sr);
@@ -86,6 +97,10 @@ const actions = {
 
     mutations.setBusy(false);
     return true;
+  },
+
+  generateRandomNumber(min: number, max: number) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
   },
 };
 

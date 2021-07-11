@@ -1,8 +1,13 @@
 <template >
   <div class="storeAlignContainer">
     <div class="centralizeItens">
-      <div @click="modalStatusOpen(url)" v-for="url in frame.state.sr" :key="url">
-        <skill-constructor :url="getImage(url)" />
+      <div
+        @click="modalStatusOpen(sr)"
+        v-for="sr in frame.state.sr"
+        :key="sr.id"
+      >
+        <skill-constructor :url="getImage(sr)" />
+        <modal :open="modalOpen" />
       </div>
     </div>
   </div>
@@ -16,23 +21,21 @@
 <script lang="ts">
 import useFrame, { Sr } from '@/modules/frame';
 import { defineComponent } from 'vue';
+import Modal from './Modal.vue';
 import SkillConstructor from './SkillConstructor.vue';
 
 export default defineComponent({
-  components: { SkillConstructor },
+  components: { SkillConstructor, Modal },
   setup() {
     const frame = useFrame();
 
-    const getImage = (sr: Sr) => [
-      sr.url,
-    ];
+    const getImage = (sr: Sr) => sr.url;
 
     frame.actions.loadSr(15, true);
 
     const modalStatusOpen = (url: string) => {
-      // const novoUrl = url.slice(91, 98);
-      // console.log('modal aberto', novoUrl);
-      frame.mutations.setSrId(url);
+      console.log('modal aberto', url);
+      // frame.mutations.setSrId(url);
     };
 
     return {
@@ -45,7 +48,6 @@ export default defineComponent({
 </script>
 
 <style scoped>
-
 .storeAlignContainer {
   justify-content: center;
   display: flex;
@@ -69,5 +71,4 @@ export default defineComponent({
   color: white;
   padding: 10px;
 }
-
 </style>
