@@ -13,8 +13,11 @@
           <div class="status">Cost: {{ sr.cost }}</div>
           <div class="status">SP: {{ sr.sp }}</div>
           <div class="status">Cooldown: {{ sr.cooldown }}</div>
-          <div class="status">Price: {{ sr.price }}</div>
-          <div>
+          <div class="price">
+            <strong>${{ sr.price }}</strong>
+          </div>
+          <div class="div-button">
+            '
             <button class="button">Comprar</button>
           </div>
         </div>
@@ -85,12 +88,25 @@ export default defineComponent({
 }
 .content-text {
   width: 300px;
+  display: flex;
+  flex-flow: column nowrap;
 }
 .status {
-  font-size: 22px;
+  font-size: 20px;
+}
+.price {
+  display: flex;
+  flex-flow: column nowrap;
+  flex: 1 0;
+  font-size: 25px;
+  justify-content: center;
+  font-family: SF Pro Text, SF Pro Icons, AOS Icons, Helvetica Neue, Helvetica,
+    Arial, sans-serif;
+}
+.div-button {
+  align-items: center;
 }
 .button {
-  margin: 25px 10px 0px 10px;
   width: 200px;
   padding: 6px;
   border-radius: 10px;
