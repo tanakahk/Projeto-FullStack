@@ -10,6 +10,7 @@ export interface Sr {
   cost: number
   sp: number
   cooldown: number
+  price: number
 }
 
 export interface FrameState {
@@ -85,6 +86,7 @@ const actions = {
         cost: actions.generateRandomNumber(5, 45),
         sp: actions.generateRandomNumber(10, 50),
         cooldown: actions.generateRandomNumber(4, 30),
+        price: actions.generateRandomNumber(100, 10000),
       };
 
       mutations.setSr(sr);

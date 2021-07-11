@@ -1,8 +1,18 @@
 <template>
   <h2>Hi {{ auth.state.username }}</h2>
 
+  <h1>Welcome to SAOIF skill record store !</h1>
+  <div class="storeAlignContainer">
+    <div class="centralizeItens">
+      <div v-for="sr in frame.state.sr" :key="sr.id">
+        <frame :sr="sr" />
+      </div>
+    </div>
+  </div>
   <div>
-    <frame />
+    <button class="buttoon" @click="frame.actions.loadSr(15, false)">
+      <strong>Load Skill Record</strong>
+    </button>
   </div>
 </template>
 
@@ -19,6 +29,8 @@ export default defineComponent({
     const auth = useAuth();
     const state = reactive({});
 
+    frame.actions.loadSr(15, true);
+
     return {
       ...toRefs(state),
       auth,
@@ -28,4 +40,28 @@ export default defineComponent({
 });
 </script>
 <style scoped>
+.storeAlignContainer {
+  justify-content: center;
+  display: flex;
+  flex-flow: row;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.centralizeItens {
+  display: flex;
+  flex-flow: row;
+  flex-wrap: wrap;
+  max-width: 1500px;
+}
+.buttoon {
+  margin-top: 50px;
+  border-radius: 10px;
+  font-size: 35px;
+  font-family: SF Pro Text, SF Pro Icons, AOS Icons, Helvetica Neue, Helvetica,
+    Arial, sans-serif;
+  background-color: #0071e3;
+  color: white;
+  padding: 10px;
+}
 </style>

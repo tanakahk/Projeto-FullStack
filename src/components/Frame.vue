@@ -1,37 +1,28 @@
 <template >
-  <div class="storeAlignContainer">
-    <div class="centralizeItens">
-      <div
-        @click="modalStatusOpen(sr)"
-        v-for="sr in frame.state.sr"
-        :key="sr.id"
-      >
-        <skill-constructor :url="getImage(sr)" />
-        <modal :open="modalOpen" />
-      </div>
-    </div>
-  </div>
   <div>
-    <button class="buttoon" @click="frame.actions.loadSr(15, false)">
-      <strong>Load Skill Record</strong>
-    </button>
+    <skill-constructor @click="modalStatus = true" :url="sr.url" />
+    <modal
+      :modalStatus="modalStatus"
+      :sr="sr"
+      @modal-close="modalStatus = false"
+    />
   </div>
 </template>
 
 <script lang="ts">
-import useFrame, { Sr } from '@/modules/frame';
-import { defineComponent } from 'vue';
+import useFrame from '@/modules/frame';
+import { defineComponent, ref } from 'vue';
 import Modal from './Modal.vue';
 import SkillConstructor from './SkillConstructor.vue';
 
 export default defineComponent({
   components: { SkillConstructor, Modal },
+  props: {
+    sr: { type: Object, required: true },
+  },
   setup() {
     const frame = useFrame();
-
-    const getImage = (sr: Sr) => sr.url;
-
-    frame.actions.loadSr(15, true);
+    const modalStatus = ref(false);
 
     const modalStatusOpen = (url: string) => {
       console.log('modal aberto', url);
@@ -41,34 +32,11 @@ export default defineComponent({
     return {
       frame,
       modalStatusOpen,
-      getImage,
+      modalStatus,
     };
   },
 });
 </script>
 
 <style scoped>
-.storeAlignContainer {
-  justify-content: center;
-  display: flex;
-  flex-flow: row;
-  flex-wrap: wrap;
-  width: 100%;
-}
-
-.centralizeItens {
-  display: flex;
-  flex-flow: row;
-  flex-wrap: wrap;
-  max-width: 1500px;
-}
-
-.buttoon {
-  margin-top: 50px;
-  font-size: 35px;
-  border-radius: 10px;
-  background-color: rgb(56, 123, 199);
-  color: white;
-  padding: 10px;
-}
 </style>
