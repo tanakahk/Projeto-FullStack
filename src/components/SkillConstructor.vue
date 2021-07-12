@@ -1,6 +1,6 @@
 <template>
   <div v-if="!modal" class="div">
-    <img class="main-frame" src="@/assets/mainFrameYStar.png" />
+    <img class="main-frame" src="@/assets/mainFrame.png" />
 
     <img class="skill-image" :src="url" />
 
@@ -8,7 +8,7 @@
     <div class="background-of-background"></div>
   </div>
   <div v-else class="div">
-    <img class="main-frame-modal" src="@/assets/mainFrameYStar.png" />
+    <img class="main-frame-modal" src="@/assets/mainFrame.png" />
 
     <img class="skill-image-modal" :src="url" />
 
@@ -47,9 +47,9 @@ export default defineComponent({
   position: relative;
   width: 300px;
   height: 300px;
-  top: -298px;
+  top: -288px;
   left: -1px;
-  clip-path: polygon(52% 6%, 90% 30%, 89% 73%, 66% 87%, 36% 87%, 12% 73%, 14% 29%);
+  clip-path: polygon(52% 1%, 88% 26%, 88% 70%, 66% 82%, 36% 82%, 13% 70%, 13% 27%);
   z-index: -1;
 }
 
@@ -58,9 +58,9 @@ export default defineComponent({
   width: 300px;
   height: 300px;
   opacity: 75%;
-  top: -610px;
+  top: -592px;
   left: -2px;
-  clip-path: polygon(52% 6%, 90% 30%, 89% 73%, 66% 87%, 36% 87%, 12% 73%, 14% 29%);
+  clip-path: polygon(52% 1%, 88% 26%, 88% 70%, 66% 82%, 36% 82%, 13% 70%, 13% 27%);
   z-index: -2;
 }
 
@@ -85,9 +85,9 @@ export default defineComponent({
   position: relative;
   width: 300px;
   height: 300px;
-  top: -298px;
+  top: -288px;
   left: -1px;
-  clip-path: polygon(52% 6%, 90% 30%, 89% 73%, 66% 87%, 36% 87%, 12% 73%, 14% 29%);
+  clip-path: polygon(52% 1%, 88% 26%, 88% 70%, 66% 82%, 36% 82%, 13% 70%, 13% 27%);
   z-index: 3;
 }
 
@@ -96,9 +96,9 @@ export default defineComponent({
   width: 300px;
   height: 300px;
   opacity: 75%;
-  top: -610px;
+  top: -592px;
   left: -2px;
-  clip-path: polygon(52% 6%, 90% 30%, 89% 73%, 66% 87%, 36% 87%, 12% 73%, 14% 29%);
+  clip-path: polygon(52% 1%, 88% 26%, 88% 70%, 66% 82%, 36% 82%, 13% 70%, 13% 27%);
   z-index: 2;
 }
 

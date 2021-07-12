@@ -17,8 +17,8 @@
             <strong>${{ sr.price }}</strong>
           </div>
           <div class="div-button">
-            <button v-if="!sell" @click="buy(sr)" class="button">Comprar</button>
-            <button v-else @click="sell(sr)" class="button">Vender</button>
+            <button v-if="!sell" @click="buySr(sr)" class="button">Comprar</button>
+            <button v-else @click="sellSr(sr)" class="button">Vender</button>
           </div>
         </div>
       </div>
@@ -49,13 +49,20 @@ export default defineComponent({
       }
     };
 
-    const buy = (sr: Sr) => {
+    const buySr = (sr: Sr) => {
       frame.actions.buySr(sr);
       emit('modal-close');
     };
+
+    const sellSr = (sr: Sr) => {
+      frame.actions.sellSr(sr);
+      emit('modal-close');
+    };
+
     return {
       modalClose,
-      buy,
+      buySr,
+      sellSr,
     };
   },
 });
@@ -73,9 +80,11 @@ export default defineComponent({
   background-color: rgba(0, 0, 0, 0.4);
 }
 .modal-content {
-  background-color: #fefefe;
+  position: relative;
   background-image: url(../assets/BackgroundLandscape.png);
-  background-size: 100%;
+  background-size: 100% 100%;
+  min-width: 665px;
+  min-height: 445,875px;
   margin: auto;
   padding: 32px;
   border: 1px solid #888;

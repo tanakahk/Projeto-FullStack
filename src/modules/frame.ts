@@ -133,6 +133,10 @@ const actions = {
     const key = 'saoifSrStore';
     localStorage.setItem(key, JSON.stringify(state.mySr));
   },
+
+  async sellSr(sr: Sr) {
+    console.log('vendendo', sr);
+  },
 };
 
 export default function useFrame(): Readonly<any> {

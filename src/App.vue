@@ -53,7 +53,7 @@ export default defineComponent({
 <style lang="scss">
 .html,
 body {
-  background-color: #0932a8;
+  background-color: #1a337c;
   background-size: 100%;
 }
 #app {
