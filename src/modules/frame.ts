@@ -20,7 +20,6 @@ export interface FrameState {
   mySr: Sr[]
   srCurrent: number
   defaultSrUrl: string
-  srFirstTimeLoaded: boolean
 }
 
 const state: FrameState = reactive({
@@ -30,7 +29,6 @@ const state: FrameState = reactive({
   mySr: [],
   srCurrent: 0,
   defaultSrUrl: 'https://github.com/Nayuta-Kani/SAOIF-Skill-Records-Database/blob/master/srimages/sr_icon_l_6100',
-  srFirstTimeLoaded: false,
 });
 
 const mutations = {
@@ -56,10 +54,6 @@ const mutations = {
 
   buySr(sr: Sr) {
       state.mySr.push(sr);
-  },
-
-  srFirstTimeLoaded(loaded: boolean) {
-    state.srFirstTimeLoaded = loaded;
   },
 };
 
