@@ -29,7 +29,10 @@ export default defineComponent({
     const frame = useFrame();
     const auth = useAuth();
 
-    frame.actions.loadSr(15, true);
+    if (!frame.state.srFirstTimeLoaded) {
+      frame.actions.loadSr(15, true);
+      frame.mutations.srFirstTimeLoaded(true);
+    }
 
     return {
       auth,

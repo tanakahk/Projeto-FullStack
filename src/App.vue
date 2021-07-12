@@ -30,7 +30,6 @@ export default defineComponent({
         if (!auth.state.token) {
           router.push({ name: 'Login' });
         }
-        // colocar uma func para usar o route para fazer parar de dar loading a cada vez q o user vai no cart
       },
     );
 
