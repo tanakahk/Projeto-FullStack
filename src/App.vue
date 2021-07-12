@@ -13,12 +13,14 @@
 import { computed, defineComponent, watch } from 'vue';
 import useAuth from '@/modules/auts';
 import { useRoute, useRouter } from 'vue-router';
+import useFrame from './modules/frame';
 
 export default defineComponent({
   setup() {
     const router = useRouter();
     const route = useRoute();
     const auth = useAuth();
+    const frame = useFrame();
 
     if (!auth.state.token) {
       router.push({ name: 'Login' });
@@ -30,7 +32,9 @@ export default defineComponent({
         if (!auth.state.token) {
           router.push({ name: 'Login' });
         }
-        // colocar uma func para usar o route para fazer parar de dar loading a cada vez q o user vai no cart
+        if (route.path !== '/') {
+          frame.mutations.srFirstTimeLoaded(true);
+        }
       },
     );
 
