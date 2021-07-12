@@ -44,6 +44,10 @@ const mutations = {
     return true;
   },
 
+  srFirstTimeLoaded(firstTime: boolean) {
+    state.srFirstTimeLoaded = firstTime;
+  },
+
   setSr(sr: Sr) {
     const idx = state.sr.findIndex((s) => s.id === sr.id);
     if (idx > -1) {
@@ -55,11 +59,13 @@ const mutations = {
   },
 
   buySr(sr: Sr) {
-      state.mySr.push(sr);
+    state.mySr.push(sr);
   },
 
-  srFirstTimeLoaded(firstTime: boolean) {
-    state.srFirstTimeLoaded = firstTime;
+  sellSr(sr: Sr) {
+    const idx = state.mySr.findIndex((s) => s.id === sr.id && s.url === sr.url && s.atk === sr.atk && s.hp === sr.hp && s.def === sr.def && s.cost === sr.cost && s.sp === sr.sp && s.cooldown === sr.cooldown && s.price === sr.price);
+
+    state.mySr.splice(idx, 1);
   },
 };
 
@@ -114,11 +120,13 @@ const actions = {
   },
 
   async loadMySr() {
+    mutations.setBusy(true);
     const key = 'saoifSrStore';
     const sr = localStorage.getItem(key);
     if (sr) {
       state.mySr = JSON.parse(sr);
     }
+    mutations.setBusy(false);
   },
 
   generateRandomNumber(min: number, max: number) {
@@ -126,16 +134,25 @@ const actions = {
   },
 
   async buySr(sr: Sr) {
+    mutations.setBusy(true);
     console.log('comprando', sr);
 
     mutations.buySr(sr);
 
     const key = 'saoifSrStore';
     localStorage.setItem(key, JSON.stringify(state.mySr));
+    mutations.setBusy(false);
   },
 
   async sellSr(sr: Sr) {
+    mutations.setBusy(true);
     console.log('vendendo', sr);
+
+    mutations.sellSr(sr);
+
+    const key = 'saoifSrStore';
+    localStorage.setItem(key, JSON.stringify(state.mySr));
+    mutations.setBusy(false);
   },
 };
 
