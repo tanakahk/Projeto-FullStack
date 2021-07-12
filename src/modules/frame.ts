@@ -115,7 +115,10 @@ const actions = {
 
   async loadMySr() {
     const key = 'saoifSrStore';
-    state.mySr = JSON.parse(localStorage.getItem(key) || '');
+    const sr = localStorage.getItem(key);
+    if (sr) {
+      state.mySr = JSON.parse(sr);
+    }
   },
 
   generateRandomNumber(min: number, max: number) {

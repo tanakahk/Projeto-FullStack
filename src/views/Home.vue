@@ -1,10 +1,11 @@
 <template>
   <h2>Hi {{ auth.state.username }}</h2>
-
   <h1>Welcome to SAOIF skill record store !</h1>
-  <h2 class="section-header">Skills Record disponíneis para compra:</h2>
   <div class="storeAlignContainer">
     <div class="centralizeItens">
+      <div style="width: 100%; margin-left: 35px">
+        <h2 class="section-header">Skills Record disponíneis para compra:</h2>
+      </div>
       <div v-for="sr in frame.state.sr" :key="sr.id">
         <frame :sr="sr" />
       </div>
@@ -44,7 +45,7 @@ export default defineComponent({
 <style scoped>
 .section-header {
   text-align: initial;
-  margin-top: 50px ;
+  margin-top: 50px;
 }
 .storeAlignContainer {
   justify-content: center;

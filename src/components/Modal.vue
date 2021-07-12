@@ -17,7 +17,8 @@
             <strong>${{ sr.price }}</strong>
           </div>
           <div class="div-button">
-            <button @click="buy(sr)" class="button">Comprar</button>
+            <button v-if="!sell" @click="buy(sr)" class="button">Comprar</button>
+            <button v-else @click="sell(sr)" class="button">Vender</button>
           </div>
         </div>
       </div>
@@ -35,6 +36,7 @@ export default defineComponent({
   props: {
     modalStatus: Boolean,
     sr: { type: Object },
+    sell: Boolean,
   },
   emits: ['modal-close'],
   setup(props, { emit }) {
