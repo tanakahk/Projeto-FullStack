@@ -74,11 +74,14 @@ export default defineComponent({
 }
 .modal-content {
   background-color: #fefefe;
+  background-image: url(../assets/BackgroundLandscape.png);
+  background-size: 100%;
   margin: auto;
-  padding: 20px;
+  padding: 32px;
   border: 1px solid #888;
   border-radius: 20px;
   max-width: 80%;
+  /* color: white; */
 }
 .close {
   color: #aaaaaa;

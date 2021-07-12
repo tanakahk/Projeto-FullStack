@@ -4,7 +4,6 @@
     <router-link to="/cart">Cart</router-link> |
     <router-link v-if="!isLogedIn" to="/login">Login</router-link>
     <a v-else href="#" @click="logout">Logout</a>
-
   </div>
   <router-view />
 </template>
@@ -52,12 +51,18 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
+.html,
+body {
+  background-color: #0932a8;
+  background-size: 100%;
+}
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
+  // color: #2c3e50;
+  color: white;
 }
 
 #nav {
@@ -65,7 +70,8 @@ export default defineComponent({
 
   a {
     font-weight: bold;
-    color: #2c3e50;
+    // color: #2c3e50;
+    color: white;
 
     &.router-link-exact-active {
       color: #42b983;
