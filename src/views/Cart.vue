@@ -4,17 +4,12 @@
   <div class="storeAlignContainer">
     <div class="centralizeItens">
       <div style="width: 100%; margin-left: 35px">
-        <h2 class="section-header">Skills Record disponíneis para compra:</h2>
+        <h2 class="section-header">Skills Record compradas:</h2>
       </div>
-      <div v-for="sr in frame.state.sr" :key="sr.id">
-        <frame :sr="sr" />
+      <div v-for="sr in frame.state.mySr" :key="sr.id">
+        <frame :sr="sr" :sell="true"/>
       </div>
     </div>
-  </div>
-  <div>
-    <button class="buttoon" @click="frame.actions.loadSr(15, false)">
-      <strong>Load Skill Record</strong>
-    </button>
   </div>
 </template>
 
@@ -30,10 +25,7 @@ export default defineComponent({
     const frame = useFrame();
     const auth = useAuth();
 
-    if (!frame.state.srFirstTimeLoaded) {
-      frame.actions.loadSr(15, true);
-      frame.mutations.srFirstTimeLoaded(true);
-    }
+    frame.actions.loadMySr();
 
     return {
       auth,
@@ -60,15 +52,5 @@ export default defineComponent({
   flex-flow: row;
   flex-wrap: wrap;
   max-width: 1500px;
-}
-.buttoon {
-  margin-top: 50px;
-  border-radius: 10px;
-  font-size: 35px;
-  font-family: SF Pro Text, SF Pro Icons, AOS Icons, Helvetica Neue, Helvetica,
-    Arial, sans-serif;
-  background-color: #0071e3;
-  color: white;
-  padding: 10px;
 }
 </style>

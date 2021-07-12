@@ -17,16 +17,20 @@ export interface FrameState {
   busy: boolean
   // srUrl: string[]
   sr: Sr[]
+  mySr: Sr[]
   srCurrent: number
   defaultSrUrl: string
+  srFirstTimeLoaded: boolean
 }
 
 const state: FrameState = reactive({
   busy: false,
   // srUrl: [],
   sr: [],
+  mySr: [],
   srCurrent: 0,
   defaultSrUrl: 'https://github.com/Nayuta-Kani/SAOIF-Skill-Records-Database/blob/master/srimages/sr_icon_l_6100',
+  srFirstTimeLoaded: false,
 });
 
 const mutations = {
@@ -48,6 +52,14 @@ const mutations = {
       state.sr.push(sr);
     }
     return true;
+  },
+
+  buySr(sr: Sr) {
+      state.mySr.push(sr);
+  },
+
+  srFirstTimeLoaded(firstTime: boolean) {
+    state.srFirstTimeLoaded = firstTime;
   },
 };
 
@@ -101,8 +113,25 @@ const actions = {
     return true;
   },
 
+  async loadMySr() {
+    const key = 'saoifSrStore';
+    const sr = localStorage.getItem(key);
+    if (sr) {
+      state.mySr = JSON.parse(sr);
+    }
+  },
+
   generateRandomNumber(min: number, max: number) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
+  },
+
+  async buySr(sr: Sr) {
+    console.log('comprando', sr);
+
+    mutations.buySr(sr);
+
+    const key = 'saoifSrStore';
+    localStorage.setItem(key, JSON.stringify(state.mySr));
   },
 };
 

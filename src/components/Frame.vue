@@ -4,6 +4,7 @@
     <modal
       :modalStatus="modalStatus"
       :sr="sr"
+      :sell="sell"
       @modal-close="modalStatus = false"
     />
   </div>
@@ -19,6 +20,7 @@ export default defineComponent({
   components: { SkillConstructor, Modal },
   props: {
     sr: { type: Object, required: true },
+    sell: Boolean,
   },
   setup() {
     const frame = useFrame();

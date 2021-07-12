@@ -13,9 +13,12 @@
           <div class="status">Cost: {{ sr.cost }}</div>
           <div class="status">SP: {{ sr.sp }}</div>
           <div class="status">Cooldown: {{ sr.cooldown }}</div>
-          <div class="status">Price: {{ sr.price }}</div>
-          <div>
-            <button class="button">Comprar</button>
+          <div class="price">
+            <strong>${{ sr.price }}</strong>
+          </div>
+          <div class="div-button">
+            <button v-if="!sell" @click="buy(sr)" class="button">Comprar</button>
+            <button v-else @click="sell(sr)" class="button">Vender</button>
           </div>
         </div>
       </div>
@@ -24,6 +27,7 @@
 </template>
 
 <script lang="ts">
+import useFrame, { Sr } from '@/modules/frame';
 import { defineComponent } from 'vue';
 import SkillConstructor from './SkillConstructor.vue';
 
@@ -32,17 +36,26 @@ export default defineComponent({
   props: {
     modalStatus: Boolean,
     sr: { type: Object },
+    sell: Boolean,
   },
   emits: ['modal-close'],
   setup(props, { emit }) {
+    const frame = useFrame();
+
     const modalClose = (e: MouseEvent) => {
       const el = e.target as HTMLElement;
       if (el.className === 'modal') {
         emit('modal-close');
       }
     };
+
+    const buy = (sr: Sr) => {
+      frame.actions.buySr(sr);
+      emit('modal-close');
+    };
     return {
       modalClose,
+      buy,
     };
   },
 });
@@ -85,12 +98,25 @@ export default defineComponent({
 }
 .content-text {
   width: 300px;
+  display: flex;
+  flex-flow: column nowrap;
 }
 .status {
-  font-size: 22px;
+  font-size: 20px;
+}
+.price {
+  display: flex;
+  flex-flow: column nowrap;
+  flex: 1 0;
+  font-size: 25px;
+  justify-content: center;
+  font-family: SF Pro Text, SF Pro Icons, AOS Icons, Helvetica Neue, Helvetica,
+    Arial, sans-serif;
+}
+.div-button {
+  align-items: center;
 }
 .button {
-  margin: 25px 10px 0px 10px;
   width: 200px;
   padding: 6px;
   border-radius: 10px;
