@@ -17,8 +17,7 @@
             <strong>${{ sr.price }}</strong>
           </div>
           <div class="div-button">
-            '
-            <button class="button">Comprar</button>
+            <button @click="buy(sr)" class="button">Comprar</button>
           </div>
         </div>
       </div>
@@ -27,6 +26,7 @@
 </template>
 
 <script lang="ts">
+import useFrame, { Sr } from '@/modules/frame';
 import { defineComponent } from 'vue';
 import SkillConstructor from './SkillConstructor.vue';
 
@@ -38,14 +38,22 @@ export default defineComponent({
   },
   emits: ['modal-close'],
   setup(props, { emit }) {
+    const frame = useFrame();
+
     const modalClose = (e: MouseEvent) => {
       const el = e.target as HTMLElement;
       if (el.className === 'modal') {
         emit('modal-close');
       }
     };
+
+    const buy = (sr: Sr) => {
+      frame.actions.buySr(sr);
+      emit('modal-close');
+    };
     return {
       modalClose,
+      buy,
     };
   },
 });

@@ -17,6 +17,7 @@ export interface FrameState {
   busy: boolean
   // srUrl: string[]
   sr: Sr[]
+  mySr: Sr[]
   srCurrent: number
   defaultSrUrl: string
 }
@@ -25,6 +26,7 @@ const state: FrameState = reactive({
   busy: false,
   // srUrl: [],
   sr: [],
+  mySr: [],
   srCurrent: 0,
   defaultSrUrl: 'https://github.com/Nayuta-Kani/SAOIF-Skill-Records-Database/blob/master/srimages/sr_icon_l_6100',
 });
@@ -48,6 +50,10 @@ const mutations = {
       state.sr.push(sr);
     }
     return true;
+  },
+
+  buySr(sr: Sr) {
+      state.mySr.push(sr);
   },
 };
 
@@ -101,8 +107,22 @@ const actions = {
     return true;
   },
 
+  async loadMySr() {
+    const key = 'saoifSrStore';
+    state.mySr = JSON.parse(localStorage.getItem(key) || '');
+  },
+
   generateRandomNumber(min: number, max: number) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
+  },
+
+  async buySr(sr: Sr) {
+    console.log('comprando', sr);
+
+    mutations.buySr(sr);
+
+    const key = 'saoifSrStore';
+    localStorage.setItem(key, JSON.stringify(state.mySr));
   },
 };
 

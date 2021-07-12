@@ -45,7 +45,7 @@ export default defineComponent({
   position: relative;
   width: 250px;
   height: 250px;
-  top: -275px;
+  top: -285px;
   z-index: -1;
 }
 
@@ -69,7 +69,7 @@ export default defineComponent({
   position: relative;
   width: 250px;
   height: 250px;
-  top: -275px;
+  top: -285px;
   z-index: 2;
 }
 

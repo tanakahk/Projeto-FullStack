@@ -1,7 +1,7 @@
 <template>
   <div id="nav">
     <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link> |
+    <router-link to="/cart">Cart</router-link> |
     <router-link v-if="!isLogedIn" to="/login">Login</router-link>
     <a v-else href="#" @click="logout">Logout</a>
 
@@ -30,6 +30,7 @@ export default defineComponent({
         if (!auth.state.token) {
           router.push({ name: 'Login' });
         }
+        // colocar uma func para usar o route para fazer parar de dar loading a cada vez q o user vai no cart
       },
     );
 
