@@ -32,6 +32,10 @@ export default defineComponent({
       },
     );
 
+    // if (auth.state.token) {
+    //   router.push({ name: 'Home' });
+    // }
+
     const isLogedIn = computed(() => auth.state.token);
     const username = computed(() => auth.state.username);
 
@@ -53,7 +57,7 @@ export default defineComponent({
 <style lang="scss">
 .html,
 body {
-  background-color: #1a337c;
+  background-color: #102149;
   background-size: 100%;
 }
 #app {
@@ -61,7 +65,6 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  // color: #2c3e50;
   color: white;
 }
 
@@ -70,7 +73,6 @@ body {
 
   a {
     font-weight: bold;
-    // color: #2c3e50;
     color: white;
 
     &.router-link-exact-active {
