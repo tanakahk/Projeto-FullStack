@@ -4,7 +4,6 @@
     <router-link to="/cart">Cart</router-link> |
     <router-link v-if="!isLogedIn" to="/login">Login</router-link>
     <a v-else href="#" @click="logout">Logout</a>
-
   </div>
   <router-view />
 </template>
@@ -33,6 +32,10 @@ export default defineComponent({
       },
     );
 
+    if (auth.state.token) {
+      router.push({ name: 'Home' });
+    }
+
     const isLogedIn = computed(() => auth.state.token);
     const username = computed(() => auth.state.username);
 
@@ -52,12 +55,17 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
+.html,
+body {
+  background-color: #102149;
+  background-size: 100%;
+}
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
+  color: white;
 }
 
 #nav {
@@ -65,7 +73,7 @@ export default defineComponent({
 
   a {
     font-weight: bold;
-    color: #2c3e50;
+    color: white;
 
     &.router-link-exact-active {
       color: #42b983;
