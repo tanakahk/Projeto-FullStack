@@ -1,31 +1,31 @@
 <template>
   <div class="container" @click="modalClose">
-    <div class="content">
-      <div class="content-inside">
+    <div class="content-container">
+      <div class="content">
         <h1>Login:</h1>
-        <div v-if="!hasUser">
-          <div>User:</div>
+        <div ref="user" class="user">
+          <div style="margin-top: 10px">User:</div>
           <input
             class="input-text"
-            ref="user"
+            ref="userInput"
             v-model="username"
             type="text"
             @keyup="userHandler"
             autofocus
           />
         </div>
-        <div v-else>
+        <button ref="userBtn" @click="next" class="button next">Next</button>
+        <div ref="pass" class="pass">
           <div style="margin-top: 10px">Senha</div>
           <input
             class="input-text"
-            ref="pass"
+            ref="passInput"
             v-model="password"
             type="password"
             @keyup="passHandler"
           />
         </div>
-        <button v-if="!hasUser" @click="next" class="button">Next</button>
-        <button v-else @click="login" class="button">Enter</button>
+        <button ref="passBtn" @click="login" class="button enter">Enter</button>
       </div>
     </div>
   </div>
@@ -43,18 +43,15 @@ export default defineComponent({
     const auth = useAuth();
     const router = useRouter();
     const user: Ref<HTMLElement | null> = ref(null);
+    const userInput: Ref<HTMLElement | null> = ref(null);
+    const userBtn: Ref<HTMLElement | null> = ref(null);
     const pass: Ref<HTMLElement | null> = ref(null);
+    const passInput: Ref<HTMLElement | null> = ref(null);
+    const passBtn: Ref<HTMLElement | null> = ref(null);
     const state = reactive({
       username: '',
       password: '',
-      hasUser: false,
     });
-
-    const next = async () => {
-      if (state.username) {
-        state.hasUser = true;
-      }
-    };
 
     const login = async () => {
       if (state.username && state.password) {
@@ -65,9 +62,31 @@ export default defineComponent({
       }
     };
 
+    const next = async () => {
+      if (
+        state.username
+        && user.value
+        && userBtn.value
+        && pass.value
+        && passBtn.value
+        && passInput.value
+      ) {
+        user.value.style.zIndex = '-1';
+        user.value.style.position = 'fixed';
+        userBtn.value.style.zIndex = '-1';
+        userBtn.value.style.position = 'fixed';
+
+        pass.value.style.zIndex = '0';
+        pass.value.style.position = 'inherit';
+        passBtn.value.style.zIndex = '0';
+        passBtn.value.style.position = 'inherit';
+        passInput.value.focus();
+      }
+    };
+
     const userHandler = (e: KeyboardEvent) => {
-      if (e.key === 'Enter' && state.username && pass.value) {
-        pass.value.focus();
+      if (e.key === 'Enter') {
+        next();
       }
     };
 
@@ -82,9 +101,13 @@ export default defineComponent({
       login,
       userHandler,
       passHandler,
-      user,
-      pass,
       next,
+      user,
+      userInput,
+      userBtn,
+      pass,
+      passInput,
+      passBtn,
     };
   },
 });
@@ -100,7 +123,7 @@ export default defineComponent({
   width: 100%;
   height: 100%;
 }
-.content {
+.content-container {
   position: relative;
   background-image: url(../assets/BackgroundLandscape.png);
   background-size: 100% 100%;
@@ -112,12 +135,21 @@ export default defineComponent({
   border: 1px solid #888;
   border-radius: 20px;
 }
-.content-inside {
+.content {
   display: flex;
   flex-flow: column nowrap;
   justify-content: center;
   height: 100%;
   align-items: center;
+}
+.user,
+.next {
+  z-index: 0;
+}
+.pass,
+.enter {
+  z-index: -1;
+  position: fixed;
 }
 .input-text {
   margin-top: 5px;

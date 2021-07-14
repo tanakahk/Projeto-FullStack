@@ -26,14 +26,8 @@ export default defineComponent({
     const frame = useFrame();
     const modalStatus = ref(false);
 
-    const modalStatusOpen = (url: string) => {
-      console.log('modal aberto', url);
-      // frame.mutations.setSrId(url);
-    };
-
     return {
       frame,
-      modalStatusOpen,
       modalStatus,
     };
   },

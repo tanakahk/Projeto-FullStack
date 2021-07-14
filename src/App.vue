@@ -32,9 +32,9 @@ export default defineComponent({
       },
     );
 
-    // if (auth.state.token) {
-    //   router.push({ name: 'Home' });
-    // }
+    if (auth.state.token) {
+      router.push({ name: 'Home' });
+    }
 
     const isLogedIn = computed(() => auth.state.token);
     const username = computed(() => auth.state.username);

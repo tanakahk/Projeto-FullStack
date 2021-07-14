@@ -17,7 +17,9 @@
             <strong>${{ sr.price }}</strong>
           </div>
           <div class="div-button">
-            <button v-if="!sell" @click="buySr(sr)" class="button">Comprar</button>
+            <button v-if="!sell" @click="buySr(sr)" class="button">
+              Comprar
+            </button>
             <button v-else @click="sellSr(sr)" class="button">Vender</button>
           </div>
         </div>
@@ -83,13 +85,11 @@ export default defineComponent({
   background-image: url(../assets/BackgroundLandscape.png);
   background-size: 100% 100%;
   min-width: 665px;
-  min-height: 445,875px;
   margin: auto;
   padding: 32px;
   border: 1px solid #888;
   border-radius: 20px;
   max-width: 80%;
-  /* color: white; */
 }
 .close {
   color: #aaaaaa;

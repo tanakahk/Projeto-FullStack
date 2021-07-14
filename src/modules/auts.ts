@@ -25,7 +25,7 @@ const state: AuthState = reactive({
   id: '',
   username: 'Tanaka',
   password: '',
-  token: 'a',
+  token: '',
 });
 
 const mutations = {
