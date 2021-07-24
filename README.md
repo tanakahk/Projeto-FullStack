@@ -6,6 +6,8 @@
 ```
 Providing me with important templates in the design of this project
 ```
+Hayate's discord: Hayate#5956
+
 
 ### Nayuta-Kani for ...
 ```
