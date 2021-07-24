@@ -1,24 +1,14 @@
 # full-stack-project
 
-## Project setup
+## Thanks to ...
+
+### Hayate for ...
 ```
-npm install
+Providing me with important templates in the design of this project
 ```
 
-### Compiles and hot-reloads for development
+### Nayuta-Kani for ...
 ```
-npm run serve
+Providing me with a large database on github with images of SAOIF skills.
 ```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+link to this database: https://github.com/Nayuta-Kani/SAOIF-Skill-Records-Database
