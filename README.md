@@ -2,6 +2,14 @@
 
 ## Thanks to ...
 
+
+### Yoyo for ...
+```
+Teach Me About VueJS
+```
+Yoyo github: https://github.com/yoannes
+
+
 ### Hayate for ...
 ```
 Providing me with important templates in the design of this project
