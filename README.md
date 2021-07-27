@@ -5,7 +5,7 @@
 
 ### Yoyo for ...
 ```
-Teach Me About VueJS
+Teach me about VueJS
 ```
 Yoyo github: https://github.com/yoannes
 
