@@ -1,18 +1,18 @@
 <template>
   <div v-if="!modal" class="div">
-    <img class="main-frame" src="@/assets/mainFrame.png" />
+    <img class="main-frame" src="@/assets/mainFrame.png" alt=''/>
 
-    <img class="skill-image" :src="url" />
+    <img class="skill-image" :src="url" alt=''/>
 
-    <img class="sr-bakground" src="@/assets/srBackground.png" />
+    <img class="sr-bakground" src="@/assets/srBackground.png" alt=''/>
     <div class="background-of-background"></div>
   </div>
   <div v-else class="div">
-    <img class="main-frame-modal" src="@/assets/mainFrame.png" />
+    <img class="main-frame-modal" src="@/assets/mainFrame.png" alt=''/>
 
-    <img class="skill-image-modal" :src="url" />
+    <img class="skill-image-modal" :src="url" alt=''/>
 
-    <img class="sr-bakground-modal" src="@/assets/srBackground.png" />
+    <img class="sr-bakground-modal" src="@/assets/srBackground.png" alt=''/>
     <div class="background-of-background-modal"></div>
   </div>
 </template>
