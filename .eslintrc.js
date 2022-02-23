@@ -17,5 +17,9 @@ module.exports = {
     'no-plusplus': 'off',
     indent: 'off',
     'max-len': 'off',
+    'vue/multi-word-component-names': 'off',
+    'vuejs-accessibility/click-events-have-key-events': 'off',
+    'vuejs-accessibility/form-control-has-label': 'off',
+    'vuejs-accessibility/no-autofocus': 'off',
   },
 };
