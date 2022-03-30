@@ -20,7 +20,7 @@
 
 <script lang="ts">
 import Frame from '@/components/Frame.vue';
-import useAuth from '@/modules/auts';
+import useAuth from '@/modules/auth';
 import useFrame from '@/modules/frame';
 import { defineComponent } from 'vue';
 

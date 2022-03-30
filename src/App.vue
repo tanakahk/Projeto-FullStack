@@ -10,7 +10,7 @@
 
 <script lang="ts">
 import { computed, defineComponent, watch } from 'vue';
-import useAuth from '@/modules/auts';
+import useAuth from '@/modules/auth';
 import { useRoute, useRouter } from 'vue-router';
 
 export default defineComponent({

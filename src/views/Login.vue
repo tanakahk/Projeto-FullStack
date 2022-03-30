@@ -32,7 +32,7 @@
 </template>
 
 <script lang="ts">
-import useAuth from '@/modules/auts';
+import useAuth from '@/modules/auth';
 import {
  defineComponent, Ref, ref, reactive, toRefs,
 } from 'vue';
