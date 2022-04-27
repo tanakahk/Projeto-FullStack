@@ -2,37 +2,43 @@
   <div class="container" @click="modalClose">
     <div class="content-container">
       <div class="content">
-        <h1>Login:</h1>
-        <div ref="user" class="user">
-          <div style="margin-top: 10px">User:</div>
-          <input
-            class="input-text"
-            ref="userInput"
-            v-model="username"
-            type="text"
-            @keyup="userHandler"
-            autofocus
-          />
+        <h1>Login</h1>
+        <div id="userContainer" v-if="!next">
+          <div ref="user">
+            <input
+              class="input-text"
+              ref="userInput"
+              v-model="username"
+              type="text"
+              placeholder="user..."
+              @keyup="userHandler"
+              autocomplete="off"
+              autofocus
+            />
+          </div>
+          <button ref="userBtn" @click="nextHandler" class="button">Next</button>
         </div>
-        <button ref="userBtn" @click="next" class="button next">Next</button>
-        <div ref="pass" class="pass">
-          <div style="margin-top: 10px">Senha</div>
-          <input
-            class="input-text"
-            ref="passInput"
-            v-model="password"
-            type="password"
-            @keyup="passHandler"
-          />
+        <div id="passContainer" style="display: fixed" v-else>
+          <div ref="pass">
+            <input
+              class="input-text"
+              ref="passInput"
+              v-model="password"
+              type="password"
+              placeholder="senha..."
+              @keyup="passHandler"
+            />
+          </div>
+          <button ref="passBtn" @click="back" class="button">Back</button>
+          <button ref="passBtn" @click="login" class="button">Enter</button>
         </div>
-        <button ref="passBtn" @click="login" class="button enter">Enter</button>
       </div>
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import useAuth from '@/modules/auts';
+import useAuth from '@/modules/auth';
 import {
  defineComponent, Ref, ref, reactive, toRefs,
 } from 'vue';
@@ -48,6 +54,7 @@ export default defineComponent({
     const pass: Ref<HTMLElement | null> = ref(null);
     const passInput: Ref<HTMLElement | null> = ref(null);
     const passBtn: Ref<HTMLElement | null> = ref(null);
+    const next = ref(false);
     const state = reactive({
       username: '',
       password: '',
@@ -62,31 +69,19 @@ export default defineComponent({
       }
     };
 
-    const next = async () => {
-      if (
-        state.username
-        && user.value
-        && userBtn.value
-        && pass.value
-        && passBtn.value
-        && passInput.value
-      ) {
-        user.value.style.zIndex = '-1';
-        user.value.style.position = 'fixed';
-        userBtn.value.style.zIndex = '-1';
-        userBtn.value.style.position = 'fixed';
+    const back = () => {
+      next.value = false;
+    };
 
-        pass.value.style.zIndex = '0';
-        pass.value.style.position = 'inherit';
-        passBtn.value.style.zIndex = '0';
-        passBtn.value.style.position = 'inherit';
-        passInput.value.focus();
+    const nextHandler = () => {
+      if (state.username) {
+        next.value = true;
       }
     };
 
     const userHandler = (e: KeyboardEvent) => {
-      if (e.key === 'Enter') {
-        next();
+      if (e.key === 'Enter' && state.username) {
+        next.value = true;
       }
     };
 
@@ -101,13 +96,15 @@ export default defineComponent({
       login,
       userHandler,
       passHandler,
-      next,
       user,
       userInput,
       userBtn,
       pass,
       passInput,
       passBtn,
+      next,
+      nextHandler,
+      back,
     };
   },
 });
@@ -142,27 +139,19 @@ export default defineComponent({
   height: 100%;
   align-items: center;
 }
-.user,
-.next {
-  z-index: 0;
-}
-.pass,
-.enter {
-  z-index: -1;
-  position: fixed;
-}
 .input-text {
   margin-top: 5px;
   display: fixed;
   position: relative;
   top: 0;
   left: 0;
-  font-size: 25px;
+  font-size: 20px;
   border-radius: 20px;
   width: 200px;
+  padding: 5px 10px 5px 10px;
 }
 .button {
-  width: 200px;
+  width: 100px;
   margin: 40px 0 10px 0;
   padding: 6px;
   border-radius: 10px;

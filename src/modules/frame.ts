@@ -1,31 +1,28 @@
 import { reactive, readonly } from 'vue';
-// import axios from 'axios';
 
 export interface Sr {
-  id: number
-  url: string
-  atk: number
-  hp: number
-  def: number
-  cost: number
-  sp: number
-  cooldown: number
-  price: number
+  id: number;
+  url: string;
+  atk: number;
+  hp: number;
+  def: number;
+  cost: number;
+  sp: number;
+  cooldown: number;
+  price: number;
 }
 
-export interface FrameState {
-  busy: boolean
-  // srUrl: string[]
-  sr: Sr[]
-  mySr: Sr[]
-  srCurrent: number
-  defaultSrUrl: string
-  srFirstTimeLoaded: boolean
+interface FrameState {
+  busy: boolean;
+  sr: Sr[];
+  mySr: Sr[];
+  srCurrent: number;
+  defaultSrUrl: string;
+  srFirstTimeLoaded: boolean;
 }
 
 const state: FrameState = reactive({
   busy: false,
-  // srUrl: [],
   sr: [],
   mySr: [],
   srCurrent: 0,
@@ -41,11 +38,11 @@ const mutations = {
     } else {
       console.log('Estou disponível');
     }
-    return true;
   },
 
   srFirstTimeLoaded(firstTime: boolean) {
     state.srFirstTimeLoaded = firstTime;
+    return true;
   },
 
   setSr(sr: Sr) {
@@ -60,16 +57,22 @@ const mutations = {
 
   buySr(sr: Sr) {
     state.mySr.push(sr);
+    return true;
   },
 
   sellSr(sr: Sr) {
     const idx = state.mySr.findIndex((s) => s.id === sr.id && s.url === sr.url && s.atk === sr.atk && s.hp === sr.hp && s.def === sr.def && s.cost === sr.cost && s.sp === sr.sp && s.cooldown === sr.cooldown && s.price === sr.price);
 
     state.mySr.splice(idx, 1);
+    return true;
   },
 };
 
 const actions = {
+  generateRandomNumber(min: number, max: number) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+  },
+
   async loadSr(count: number, firstTime: boolean) {
     mutations.setBusy(true);
 
@@ -127,13 +130,10 @@ const actions = {
       state.mySr = JSON.parse(sr);
     }
     mutations.setBusy(false);
+    return true;
   },
 
-  generateRandomNumber(min: number, max: number) {
-    return Math.floor(Math.random() * (max - min + 1)) + min;
-  },
-
-  async buySr(sr: Sr) {
+  buySr(sr: Sr) {
     mutations.setBusy(true);
     console.log('comprando', sr);
 
@@ -142,9 +142,10 @@ const actions = {
     const key = 'saoifSrStore';
     localStorage.setItem(key, JSON.stringify(state.mySr));
     mutations.setBusy(false);
+    return true;
   },
 
-  async sellSr(sr: Sr) {
+  sellSr(sr: Sr) {
     mutations.setBusy(true);
     console.log('vendendo', sr);
 
@@ -153,9 +154,11 @@ const actions = {
     const key = 'saoifSrStore';
     localStorage.setItem(key, JSON.stringify(state.mySr));
     mutations.setBusy(false);
+    return true;
   },
 };
 
+/* eslint-disable  @typescript-eslint/no-explicit-any */
 export default function useFrame(): Readonly<any> {
   return readonly({
     state,

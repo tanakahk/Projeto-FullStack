@@ -1,3 +1,4 @@
+import axios from 'axios';
 import { reactive, readonly } from 'vue';
 
 interface AuthState {
@@ -12,7 +13,7 @@ interface AuthMutations {
 }
 
 interface AuthActions {
-  login: (username: string, password: string) => Promise<boolean>;
+  login: (inputUsername: string, inputPassword: string) => Promise<boolean>;
 }
 
 interface UseAuth {
@@ -44,9 +45,16 @@ const mutations = {
 };
 
 const actions = {
-  async login(username: string) {
-    mutations.login('id', username, 'tokenAdmin');
-    return true;
+  async login(inputUsername: string, inputPassword: string) {
+    let status = false;
+    await axios.post('http://localhost:5000/v1/login', {
+      username: inputUsername,
+      password: inputPassword,
+    }).then((res) => {
+      mutations.login(res.data.result.id.toString(), res.data.result.username, res.data.result.token);
+      status = true;
+    });
+    return status;
   },
 };
 
