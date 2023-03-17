@@ -1,24 +1,7 @@
-# full-stack-project
+## Projeto frontend de uma loja de cartas
+Projeto feito para praticar os conhecimentos do curso da Ingate de desenvolvimento WEB full stack
 
 ## Thanks to ...
-
-
-### Yoyo for ...
-```
-Teach me about VueJS
-```
-Yoyo github: https://github.com/yoannes
-
-
-### Hayate for ...
-```
-Providing me with important templates in the design of this project
-```
-Hayate's discord: Hayate#5956
-
-
-### Nayuta-Kani for ...
-```
-Providing me with a large database on github with images of SAOIF skills.
-```
-link to this database: https://github.com/Nayuta-Kani/SAOIF-Skill-Records-Database
+* [Yoyo](https://github.com/yoannes) for teach me about WEB development
+* [Hayate Kamiyama#5956](https://discord.com/) for providing me some design templates
+* Nayuta-Kani for providing me a [database](https://github.com/Nayuta-Kani/SAOIF-Skill-Records-Database) of SAOIF images
