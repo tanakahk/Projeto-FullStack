@@ -1,6 +1,19 @@
-## Projeto frontend de uma loja de cartas
-Projeto feito para praticar os conhecimentos do curso da Ingate de desenvolvimento WEB full stack
+## Frontend project of a card market
+Project made to practice the knowledge from the Ingate full stack WEB development course
 
+## Build and Run
+Install vue-cli:
+```
+npm install -g @vue/cli
+```
+Install all dependencies:
+```
+npm i
+```
+Run:
+```
+npm run serve
+```
 ## Thanks to ...
 * [Yoyo](https://github.com/yoannes) for teach me about WEB development
 * [Hayate Kamiyama#5956](https://discord.com/) for providing me some design templates
